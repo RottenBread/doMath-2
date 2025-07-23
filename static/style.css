@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    font-family: 'Do Hyeon', sans-serif;
+    display: flex;
+    background: #e0e0e0;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 300px;
+    height: 100vh;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+
+    position: relative;
+    z-index: 2;
+}
+
+.sidebar h2 {
+    font-size: 60px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 10px 0;
+    font-size: 30px;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}
+
+/* Main content */
+.today_problem {
+    padding: 30px;
+    margin-left: 50px;
+    margin-top: 40px;
+    width: 707px;
+    height: 500px;
+
+    border-radius: 13px;
+    box-shadow:  36px 36px 72px #bebebe,
+                -36px -36px 72px #ffffff;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+/* Problem_1 */
+
+.problem_1_main {
+    padding: 30px;
+    margin-left: 50px;
+    margin-top: 40px;
+    width: 1460px;
+    height: 500px;
+
+    border-radius: 13px;
+    box-shadow:  36px 36px 72px #bebebe,
+                -36px -36px 72px #ffffff;
+    font-size: 30px;
+}
+
+.in_cal {
+    border-radius: 10px;
+    background: #e0e0e0;
+    box-shadow:  41px 41px 82px #797979,
+                -41px -41px 82px #ffffff;
+    height: 300px;
+    width: 1200px;
+    place-items: center;
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size:600%
+}
+
+.type_answer {
+    width:250px;
+    height:100px;
+    font-size:100px;
+    padding: 10px;
+    margin-bottom: 70px;
+}
+
+.send_answer {
+    width:100px;
+    height:100px;
+    font-size:75px;
+}

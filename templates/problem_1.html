@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>DOMATH :: 수학교습 프로그램</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>DOMATH 2</h2>
+        <a href="{{ url_for('index') }}">메인</a>
+        <a href="https://github.com/RottenBread">About</a>
+    </div>
+    <div class="problem_1_main">
+        <div class="problem_1_main_q1">오늘의 정답 횟수: {{ correct_count }} 회</div>
+        <br><br>
+        <div class = "in_cal">{{ sik }} =&nbsp; 
+            <form action="/check_p1" method="post"> 
+                <input class = "type_answer" type="text" name="answer">
+                <input type="hidden" name="sik" value="{{ sik }}">
+                <input class = "send_answer" type="submit" value="✔">
+            </form>
+        </div>
+    </div>  
+</body>
+</html>

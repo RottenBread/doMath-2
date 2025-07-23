@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>DOMATH :: 수학교습 프로그램</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+        .pie-chart1 {
+            display:inline-block;
+            width: 300px;
+            height: 300px;
+            background: conic-gradient(#C6DBDA {{ correct_count }}%, #FFFFFF 0);
+            border-radius: 50%;
+            margin: -50px 0 0 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>DOMATH 2</h2>
+        <a href="#">메인</a>
+        <a href="{{ url_for('problem_1') }}">문제풀기 (1자릿수)</a>
+        <a href="{{ url_for('problem_4') }}">문제풀기 (4자릿수)</a>
+        <a href="{{ url_for('problem_money') }}">문제풀기 (돈계산법)</a>
+        <a href="https://github.com/RottenBread">About</a>
+    </div>
+
+    <div class="today_problem">
+        <h1>오늘의 문제 풀이 상황</h1>
+        <br><br>
+        <div class="pie-chart1" id="pieChart">{{ correct_count }}% 완료됨</div>
+    </div>
+</body>
+</html>
