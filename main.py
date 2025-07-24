@@ -8,16 +8,22 @@ print (a)
 app.secret_key = a
 
 # 다음 아래항목은 4자리 문제의 최댓값을 손쉽게 바꿀 수 있는 변수입니다.
-range_4_number = 1000
+range_4_pm = 1000 # 덧셈 뺄셈 범위 지정
+range_4_mutiple = 100 # 곱셈 범위 지정
+range_4_divide = 1000 # 나눗셈 범위 지정, 나누는 수는 자동으로 1/10 값으로 지정됩니다. ex) 1000 이면 100
+
 # 아래 끝
 
 def generate_problem(max, max2):
     num1 = random.randint(1, max)
     num2 = random.randint(1, max2)
     if max > 10:
-        operator = random.choice(['+', '-', '*'])#, '/'])
+        operator = random.choice(['+', '-', '×'])#, '÷'])
         if operator == "-":
             num2 = random.randint(1, num1)
+        elif operator == "×":
+            num1 = random.randint(1, range_4_mutiple)
+            num2 = random.randint(1, range_4_mutiple)
     else:
         operator = random.choice(['+', '-'])
         if operator == "-":
@@ -37,7 +43,7 @@ def verify_problem(user_answer, user_answer2, nowtime_sik):
         elif operator == '÷':
             result = num1 // num2
             result2 = num1 % num2
-        elif operator == '*':
+        elif operator == '×':
             result = num1 * num2
 
         if operator != "÷":
@@ -91,7 +97,7 @@ def problem_4():
     except:
         correct_count = 0
 
-    sik = generate_problem(range_4_number, range_4_number)
+    sik = generate_problem(range_4_pm, range_4_pm)
 
     return render_template('problem_4.html', sik=sik, correct_count=correct_count)
 
@@ -130,7 +136,7 @@ def check_p4():
             session['correct_count'] = session.get('correct_count', 0) + 1
             correct_count = session['correct_count']
             print (session['correct_count'])
-            sik = generate_problem(range_4_number, range_4_number)
+            sik = generate_problem(range_4_pm, range_4_pm)
             return render_template('problem_4.html', sik=sik, correct_count=correct_count)
         else:
             sik = request.form['sik']
@@ -145,7 +151,7 @@ def check_p4():
 def detect_refresh():
     if 'correct_count' in session and session['correct_count'] > 0:
         session['correct_count'] -= 1
-    return jsonify(success=True) # 새로고침 할때 정답 횟수가 늘어나는 버그 방지
+    return jsonify(success=True) # 꼼수 방지
 
 if __name__ == '__main__':
     app.run(debug=True)
