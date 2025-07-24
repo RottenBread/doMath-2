@@ -1,4 +1,4 @@
-# doMath 2 - v0.1 (not release)
+# doMath 2 - v0.2
 Web-based online math problem generator <br>
 
 # How to use
