@@ -60,10 +60,7 @@ def home():
         correct_count = session['correct_count']
     except:
         correct_count = 0
-
-    problem, result = generate_problem()
-    answer = result if request.method == 'POST' else None
-    return render_template("index.html", problem=problem, answer=answer, correct_count=correct_count)
+    return render_template("index.html", correct_count=correct_count)
 
 @app.route('/')
 def index():
@@ -101,14 +98,15 @@ def problem_money():
 def check1_p1():
     try:
         result = verify_problem(request.form['answer'], 0, request.form['sik'])
-        sik = request.form['sik']
         print(f"이용자의 답안: {request.form['answer']}, 주어진 식: {request.form['sik']}")
         if result == "정답입니다!":
             session['correct_count'] = session.get('correct_count', 0) + 1
             correct_count = session['correct_count']
             print (session['correct_count'])
+            sik = generate_problem(9, 9)
             return render_template('problem_1.html', sik=sik, correct_count=correct_count)
         else:
+            sik = request.form['sik']
             return render_template('problem_1_fail.html', sik=sik)
                 
     except Exception as e:
