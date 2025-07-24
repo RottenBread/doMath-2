@@ -9,10 +9,29 @@
     </style>
 </head>
 <body>
+    <script>
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'F5' || (event.ctrlKey && event.key === 'r') || (event.metaKey && event.key === 'r')) {
+                event.preventDefault();
+                navigator.sendBeacon('/detect_refresh', new Blob());
+            }
+        });
+    </script>
     <div class="sidebar">
         <h2>DOMATH 2</h2>
         <a href="{{ url_for('index') }}">메인</a>
         <a href="https://github.com/RottenBread">About</a>
     </div>
+    <div class="problem_4_main">
+        <div class="problem_4_main_q4">오늘의 정답 횟수: {{ correct_count }} 회</div>
+        <br><br>
+        <div class = "in_cal_4">{{ sik }} =&nbsp; 
+            <form action="/check_p4" method="post"> 
+                <input class = "type_answer" type="text" name="answer" autocomplete="off">
+                <input type="hidden" name="sik" value="{{ sik }}">
+                <input class = "send_answer" type="submit" value="✔">
+            </form>
+        </div>
+    </div>  
 </body>
 </html>

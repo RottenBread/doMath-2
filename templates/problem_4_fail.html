@@ -22,12 +22,12 @@
         <a href="{{ url_for('index') }}">메인</a>
         <a href="https://github.com/RottenBread">About</a>
     </div>
-    <div class="problem_1_main">
-        <div class="problem_1_main_q1">오늘의 정답 횟수: {{ correct_count }} 회</div>
+    <div class="problem_4_main">
+        <div class="problem_4_main_q4">오답입니다. 다시 도전해 보세요.</div>
         <br><br>
-        <div class = "in_cal">{{ sik }} =&nbsp; 
-            <form action="/check_p1" method="post"> 
-                <input class = "type_answer" type="text" name="answer" autocomplete="off">
+        <div class = "in_cal_4">{{ sik }} =&nbsp; 
+            <form action="/check_p4" method="post"> 
+                <input class = "type_answer" type="text" name="answer">
                 <input type="hidden" name="sik" value="{{ sik }}">
                 <input class = "send_answer" type="submit" value="✔">
             </form>

@@ -9,6 +9,14 @@
     </style>
 </head>
 <body>
+    <script>
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'F5' || (event.ctrlKey && event.key === 'r') || (event.metaKey && event.key === 'r')) {
+                event.preventDefault();
+                console.log("새로고침이 차단되었습니다.");
+            }
+        });
+    </script>
     <div class="sidebar">
         <h2>DOMATH 2</h2>
         <a href="{{ url_for('index') }}">메인</a>
