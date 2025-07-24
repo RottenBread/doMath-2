@@ -13,4 +13,4 @@ Web-based online math problem generator <br>
 네자릿수 기능 완성
 
 # TO-DO
-reduce codes with function
+코드 최적화
