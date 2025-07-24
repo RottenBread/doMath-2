@@ -6,8 +6,11 @@ Web-based online math problem generator <br>
 2. connect to http://127.0.0.1:5000/ (On your web browser)
 3. Enjoy!
 
+# Updates
+한자릿수 기능, 하루 할당량 그래프 기능 완성
+
 # Next Update
-한자릿수 기능 완성
+네자릿수 기능 완성
 
 # TO-DO
 reduce codes with function
