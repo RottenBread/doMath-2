@@ -1,19 +1,27 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, jsonify
 from datetime import datetime
 import random
 
 app = Flask(__name__)
-a = datetime.today().strftime("%Y%m%d%H") 
+a = datetime.today().strftime("%Y%m%d%H")
 print (a)
 app.secret_key = a
+
+# 다음 아래항목은 4자리 문제의 최댓값을 손쉽게 바꿀 수 있는 변수입니다.
+range_4_number = 1000
+# 아래 끝
 
 def generate_problem(max, max2):
     num1 = random.randint(1, max)
     num2 = random.randint(1, max2)
     if max > 10:
-        operator = random.choice(['+', '-', '*', '/'])
+        operator = random.choice(['+', '-', '*'])#, '/'])
+        if operator == "-":
+            num2 = random.randint(1, num1)
     else:
         operator = random.choice(['+', '-'])
+        if operator == "-":
+            num2 = random.randint(1, num1)
     sik = f"{num1} {operator} {num2}"
     return sik
 
@@ -47,7 +55,6 @@ def verify_problem(user_answer, user_answer2, nowtime_sik):
                     return render_template(f'result.html', result=result)                 
                 
     except Exception as e:
-        typed_answer = request.form['answer']
         sik = request.form['sik']
         print (e)
 
@@ -84,7 +91,7 @@ def problem_4():
     except:
         correct_count = 0
 
-    sik = generate_problem(9999, 9999)
+    sik = generate_problem(range_4_number, range_4_number)
 
     return render_template('problem_4.html', sik=sik, correct_count=correct_count)
 
@@ -95,7 +102,7 @@ def problem_money():
 
 
 @app.route('/check_p1', methods=['post'])
-def check1_p1():
+def check_p1():
     try:
         result = verify_problem(request.form['answer'], 0, request.form['sik'])
         print(f"이용자의 답안: {request.form['answer']}, 주어진 식: {request.form['sik']}")
@@ -113,6 +120,32 @@ def check1_p1():
         sik = request.form['sik']
         print (e)
         return render_template('problem_1.html', sik=sik)
+
+@app.route('/check_p4', methods=['post'])
+def check_p4():
+    try:
+        result = verify_problem(request.form['answer'], 0, request.form['sik'])
+        print(f"이용자의 답안: {request.form['answer']}, 주어진 식: {request.form['sik']}")
+        if result == "정답입니다!":
+            session['correct_count'] = session.get('correct_count', 0) + 1
+            correct_count = session['correct_count']
+            print (session['correct_count'])
+            sik = generate_problem(range_4_number, range_4_number)
+            return render_template('problem_4.html', sik=sik, correct_count=correct_count)
+        else:
+            sik = request.form['sik']
+            return render_template('problem_4_fail.html', sik=sik)
+                
+    except Exception as e:
+        sik = request.form['sik']
+        print (e)
+        return render_template('problem_1.html', sik=sik)
+
+@app.route('/detect_refresh', methods=['POST'])
+def detect_refresh():
+    if 'correct_count' in session and session['correct_count'] > 0:
+        session['correct_count'] -= 1
+    return jsonify(success=True) # 새로고침 할때 정답 횟수가 늘어나는 버그 방지
 
 if __name__ == '__main__':
     app.run(debug=True)
