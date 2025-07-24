@@ -1,0 +1,13 @@
+# doMath 2 - v0.1 (not release)
+Web-based online math problem generator <br>
+
+# How to use
+1. Run main.py
+2. connect to http://127.0.0.1:5000/ (On your web browser)
+3. Enjoy!
+
+# Next Update
+한자릿수 기능 완성
+
+# TO-DO
+reduce codes with function
